@@ -1,0 +1,149 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Template for CUMCM or ZJUMCM
+% LaTeX Template
+% Version 1.0 
+%
+% This template has been downloaded from:
+% http://Github.com/GladeLiu
+%
+% Original author:
+% Chen-ang Liu
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[a4paper,12pt]{article}
+\usepackage{CJK}
+\usepackage[top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage{amsfonts,amssymb,amsmath,amsthm}
+\usepackage{longtable}
+\usepackage{supertabular}
+\usepackage{titlesec}
+\usepackage{ctexcap}
+\usepackage{fancyhdr}
+\pagestyle{plain}
+\titleformat*{\section}{\centering\large\bfseries}
+\usepackage{graphicx,epstopdf}
+\usepackage{subfigure}
+\CTEXsetup[format={\zihao{4}\bf\heiti\centering}]{section}
+\CTEXsetup[format={\zihao{-4}\bf\songti}]{subsection}
+\CTEXsetup[format={\zihao{-4}\bf\songti}]{subsubsection}
+
+\usepackage{mdframed}
+
+
+%----------------------------------------------------------------------------------------
+%	Title and Abstract
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\begin{CJK*}{GBK}{song}
+\renewcommand{\abstractname}{\zihao{4}\heiti Abstract}
+\begin{abstract}
+The abstract is important. Maybe you should font-weight the keywords of the paper in the abstract. In addition, it is necessary for the abstract to include your conclusion.
+
+\end{abstract}
+\thispagestyle{empty}
+\newpage
+
+%keywords is not required
+
+%----------------------------------------------------------------------------------------
+%	Main body of the paper
+%----------------------------------------------------------------------------------------
+
+\section{Repeat of Problem}
+
+\subsection{Background}
+
+\subsection{Repeat}
+
+\section{Analysis of Problem}
+\subsection{Problem 1}
+
+\subsection{Problem 2}
+
+\subsection{Problem 3}
+
+\subsection{Problem 4}
+
+
+\section{Basic Assumption of the Model}
+
+$\bullet$\quad Assumption 1
+
+$\bullet$\quad Assumption 2
+
+$\bullet$\quad Assumption 3
+
+$\bullet$\quad Assumption 4
+
+
+\section{Symbolic Statement}
+%Using table is a good choice
+\begin{table}[!htbp]
+\centering
+\begin{supertabular}{c|c}\hline
+Symbols & Description \\ \hline
+\hline
+$x_4$    & XXX   \\
+$x_5$    & XXX   \\
+$x_6$    & XXX   \\
+$x_7$    & XXX   \\
+$x_8$    & XXX   \\ \hline
+\end{supertabular}
+\end{table}
+
+\section{Modeling and Solution}
+
+\subsection{Problem 1}
+
+\subsubsection{XXX}
+\paragraph{(1) XXX} 
+
+
+\section{Analysis of the Model}
+
+\subsection{sensitivity analysis}
+
+
+
+\section{Evaluation and Improvement of the Model}
+
+\subsection{Problem 1}
+
+\subsection{Problem 2}
+
+
+\section{Model Generalize}
+
+%----------------------------------------------------------------------------------------
+%	References
+%----------------------------------------------------------------------------------------
+\renewcommand\refname{References}
+\bibliographystyle{unsrt}
+\bibliographystyle{plain}
+\bibliography{References}% your bib file should be named References
+
+\newpage
+\appendix{\textbf{Appendix}}
+\section{R code}
+\subsection{Problem 1}
+\begin{verbatim} 
+your R code
+\end{verbatim}
+
+\section{Matlab code}
+\subsection{Problem 1}
+\begin{verbatim}
+your matlab code
+\end{verbatim}
+
+\end{CJK*}
+\end{document}
