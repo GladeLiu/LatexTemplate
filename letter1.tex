@@ -1,0 +1,56 @@
+\documentclass[11pt,stdletter,dateno,sigleft]{newlfm}
+\usepackage{charter}
+\usepackage{baskervald}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\hypersetup{colorlinks, breaklinks, urlcolor=black, linkcolor=Maroon}
+
+\newsavebox{\Liu}\sbox{\Liu}{\parbox[b]{1.5in}{\vspace{0.3in}
+%Add your school or company logo
+\includegraphics[width=0.8\linewidth]{AddYourLogo.png}
+}
+\hspace{1mm}\large \textbf{Zhejiang University}
+}
+\makeletterhead{Liu}{\Lheader{\usebox{\Liu}}}
+
+\newlfmP{sigsize=20pt}
+\newlfmP{addrfromphone}
+\newlfmP{addrfromemail}
+\PhrPhone{Phone}
+\PhrEmail{Email}
+
+\lthLiu
+
+\namefrom{XXX}
+
+\addrfrom{
+%\today\\[12pt]
+\textbf{XX XXX, Professor}\\
+\emph{Institute of XXXX}\\
+\emph{Department of XXXX}
+}
+\phonefrom{+86-0571-XXXXXX}
+\emailfrom{\href{mailto:liuchenang@gmail.com}{liuchenang@gmail.com}}
+
+\greetto{Dear Sir or Madam,}
+\closeline{Sincerely yours,}
+
+\nameto{\textbf{}\vspace{-10mm}}
+
+
+\makeatletter
+\setlength\@Hrw{1.5pt}
+\setlength\@Frw{0pt}
+\setlength{\headsep}{5mm}
+\makeatother
+
+\begin{document}
+\begin{newlfm}
+
+\lipsum[1-5]
+
+\thispagestyle{empty}
+
+
+\end{newlfm}
+\end{document}
