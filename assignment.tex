@@ -1,0 +1,208 @@
+\documentclass[a4paper,11pt]{ctexart}
+\usepackage{CJK}
+\usepackage{array,lipsum, bibentry}
+\usepackage[top=3cm,bottom=3cm,left=3cm,right=3cm]{geometry}
+\usepackage{amsfonts,amssymb,amsmath,amsthm}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\definecolor{url}{rgb}{0.15,0.57,0.68}
+\usepackage[colorlinks,linkcolor=black,hyperindex,CJKbookmarks]{hyperref}% 添加超级链接
+\hypersetup{colorlinks, breaklinks, urlcolor=url, linkcolor=Maroon}
+
+\usepackage{titlesec}
+%\titleformat*{\section}{\large\bfseries}%仅一级标题居中,一级标题4号黑体
+
+\CTEXsetup[format={\zihao{4}\bf\heiti}]{section}
+%\CTEXsetup[format={\zihao{-4}\bf\songti}]{subsection}
+%\CTEXsetup[format={\zihao{-4}\bf\songti}]{subsubsection}
+
+\usepackage{cite}
+
+\usepackage{draftwatermark}
+\SetWatermarkText{Chen-ang Liu}%设置水印文字
+\SetWatermarkLightness{0.8}%设置水印亮度
+\SetWatermarkScale{0.8}%设置水印大小
+
+%\usepackage{lettrine}
+\usepackage{supertabular}
+
+\definecolor{lightgray}{gray}{0.5}
+\newcolumntype{L}{>{\raggedleft}p{0.14\textwidth}}
+\newcolumntype{R}{p{0.8\textwidth}}
+\newcommand\VRule{\color{lightgray}\vrule width 0.5pt}
+
+\renewenvironment{proof}{\par\noindent{\bf 证明}}{\hspace*{\fill}$\square$\par}
+
+\begin{document}
+\begin{CJK*}{GBK}{song}
+\title{\vspace{-20mm}\fontsize{21pt}{10pt}\selectfont\heiti\textbf{豪斯多夫测度与分形几何}}
+\author{刘辰昂\thanks{浙江大学, 邮箱:\href{mailto:liuchenang@gmail.com}{liuchenang@gmail.com}, 主页
+\url{chenangliu.info/}}}
+\date{}
+\maketitle
+\vspace{-10mm}
+%abstract
+%\renewcommand{\abstractname}{Abstract}
+%\begin{abstract}
+
+%\end{abstract}
+
+
+
+
+
+\section{豪斯多夫测度及其性质}
+\subsection{定义}
+豪斯多夫测度的定义方式与勒贝格测度等类似，同时通过寻找覆盖来实现，故在定义豪斯多夫测多前，首先需要被提及的是$\delta-\textbf{覆盖}$。其定义如下
+\newtheorem{definition}{定义}[subsection]
+\begin{definition}[$\delta-\textbf{覆盖}$]
+设$(X,d)$为度量空间，对于E的子集$U$，定义$U$的直径为$|U|=\sup\{d(x,y):x,y\in U\}$. 同时令$E$为$X$的子集. 并且设$\delta>0$, 若对于$X$的可列或有限子集族$\{U_i\}$, 如果它满足下述两条性质：(1)任一$U_i$的直径不超过$\delta$，即$|U_i|\leq\delta$; (2)且它们的并覆盖$E$, 即$\bigcup\limits_{i\geq1}U_i\supset E$, 则称$\{U_i\}$为$E$的一个$\delta-\textbf{覆盖}$
+\end{definition}
+基于$\delta-\textbf{覆盖}$可以给出$\mathscr{H}^{s}_{\delta}(E)$的定义
+\begin{definition}[$\mathscr{H}^{s}_{\delta}(E)$]
+设$s\geq0$, $\delta>0$, 令
+\begin{align*}
+\mathscr{H}^{s}_{\delta}(E)=\inf\{\sum_{i\geq1}|U_i|^s: \{U_i\}_{i\geq1}\text{为}E\text{的}\delta-\textbf{覆盖}\}
+\end{align*}
+\end{definition}
+其中这里$\inf$表示对$E$的所有的$\delta-\text{覆盖}$取下确界. 由于这里$\delta$是任取的正数，考虑到$\mathscr{H}^{s}_{\delta}$作为$\delta$的函数单调非减，故而可知其当$\delta$趋于0时极限存在。由此引出豪斯多夫测度的定义
+\begin{definition}[\bf 豪斯多夫测度]
+\begin{align*}
+\mathscr{H}^{s}(E)=\lim\limits_{\delta\rightarrow0}\mathscr{H}^{s}_{\delta}(E)
+\end{align*}
+这里$\mathscr{H}^{s}(E)$即称为$E$的$s-\textbf{维豪斯多夫测度}$
+\end{definition}
+此外值得注意的是他的值可能为0、正有限常数或者正无穷。当取定的$\textbf{s}$使得其为正有限常数时，则称$E$为$s-\textbf{集}$.
+
+\subsection{初等性质}
+与其他测度一样，豪斯多夫也有着很多良好的性质，比较重要的性质有四条同时由这四条重要性质也可以推出很多衍生的结论。
+\newtheorem{proposition}{命题}[subsection]
+\begin{proposition}
+作为$E$的函数, $\mathscr{H}^{s}_{\delta}(E)$与$\mathscr{H}^{s}(E)$为外测度
+\end{proposition}
+
+\begin{proof}
+由外测度的定义可知，我们只需分别证明$\mathscr{H}^{s}_{\delta}(\varnothing)=0$, 单调性即若$E\subset F$, 则$\mathscr{H}^{s}_{\delta}(E)\leq\mathscr{H}^{s}_{\delta}(F)$, 以及次可加性. 事实上前两条根据定义就可以直接看到，故只需证明次可加性即可，即对$X$的任意可列集族$\{E_i\}_{i\geq1}$, 有
+\begin{align*}
+\mathscr{H}^{s}_{\delta}(\bigcup\limits_{i\geq1}E_i)\leq\sum\limits_{i\geq1}\mathscr{H}^{s}_{\delta}(E_i)
+\end{align*}
+注意到在无限情形下该不等式显然成立，故只需考虑有限情形即可. 任给$\epsilon>0$, 对每一$i$, 选择$E_i$的一个$\delta-$覆盖$\{U_{i,j}\}_{j\geq1}$使得$\sum\limits_{j\geq1}|U_{i,j}|^s\leq\mathscr{H}^{s}_{\delta}(E_i)+\epsilon2^{-i}$. 由于可列集族$\{U_{i,j}\}_{i,j\geq1}$为$\bigcup\limits_{i\geq1}E_i$的一个$\delta-$覆盖，故结合定义并对上式累加可以得到
+\begin{align*}
+\mathscr{H}^{s}_{\delta}(\bigcup\limits_{i\geq1}E_i)\leq\sum\limits_{i,j\geq1}|U_{i,j}|^s\leq\sum\limits_{i\geq1}\mathscr{H}^{s}_{\delta}(E_i)+\epsilon
+\end{align*}
+最后由$\epsilon$的任意性即可得到$\mathscr{H}^{s}_{\delta}(\bigcup\limits_{i\geq1}E_i)\leq\sum\limits_{i\geq1}\mathscr{H}^{s}_{\delta}(E_i)$
+
+同理可证$\mathscr{H}^{s}$也有相同的性质(特殊情形)
+\end{proof}
+\begin{proposition}
+$\mathscr{H}^{s}$为度量外测度
+\end{proposition}
+
+\begin{proof}
+设$E,F\subset X$, 且$d(E,F)>0$. 由度量外测度的定义可知，只需证明
+\begin{align*}
+\mathscr{H}^{s}(E\cup F)=\mathscr{H}^{s}(E)+\mathscr{H}^{s}(F)
+\end{align*}
+根据外测度的性质可知只需证明$\mathscr{H}^{s}(E\cup F)\geq\mathscr{H}^{s}(E)+\mathscr{H}^{s}(F)$即可. 令$2d<d(E,F)$, 则$E$的任一$\delta-$覆盖与$F$的任一$\delta-$覆盖彼此不想交, 从而$E\cup F$的任一$\delta-$ 覆盖可以分解为$E$的$\delta-$覆盖与$F$的$\delta-$覆盖. 由此即可得到
+\begin{align*}
+\mathscr{H}^{s}_{\delta}(E\cup F)\geq\mathscr{H}^{s}_{\delta}(E)+\mathscr{H}^{s}_{\delta}(F)
+\end{align*}
+且
+\begin{align*}
+\mathscr{H}^{s}(E\cup F)\geq\mathscr{H}^{s}(E)+\mathscr{H}^{s}(F)
+\end{align*}
+故等式得证，即$\mathscr{H}^{s}$为度量外测度
+\end{proof}
+在给出第三个性质前，须先给出赫尔德条件和李普希茨映射的定义
+\begin{definition}[$\alpha$阶赫尔德(O.H\"{o}lder)条件]
+设$(X_1,d_1),(X_2,d_2)$为两个度量空间, $E\subset X_1$, $f: E\rightarrow X_2$为由$E$到$X_2$的映射, 如果存在正常数$c>0, \alpha>0$使得
+\begin{align*}
+d_2(f(x),f(y))\leq c(d_1(x,y))^{\alpha},\quad x,y\in E
+\end{align*}
+则称$f$满足$\alpha$\textbf{阶赫尔德(O.H\"{o}lder)条件}. 若$\alpha=1$, 则称$f$为李普希茨映射. 如果存在常数$c'>0$使得
+\begin{align*}
+c'(d_1(x,y))\leq d_2(f(x),f(y))\leq c(d_1(x,y)),\quad x,y\in E
+\end{align*}
+则称$f$为\textbf{双李普希茨映射}
+\end{definition}
+
+\begin{proposition}
+设$E\subset X_1$, $f: E\rightarrow X_2$满足$\alpha$阶赫尔德条件, 则对任意$s\geq0$, 有
+\begin{align*}
+\mathscr{H}^{s/\alpha}(f(E))\leq c^{s/\alpha}\mathscr{H}^{s}(E)
+\end{align*}
+\end{proposition}
+证明过程非常简单
+\begin{proof}
+设$\{U_i\}$为$E$的一个$\delta-$覆盖, 由命题条件可知
+\begin{align*}
+|f(U_i\cap E)|\leq c|U_i|^{\alpha}
+\end{align*}
+从而$\{f(U_i\cap E)\}$为$f(E)$的一个$c\delta^{\alpha}-$覆盖, 故
+\begin{align*}
+\sum|f(U_i\cap E)|^{s/\alpha}\leq c^{s/\alpha}\sum|U_i|^s
+\end{align*}
+由此即可得到
+\begin{align*}
+\mathscr{H}^{s/\alpha}_{c\delta^\alpha}(f(E))\leq c^{s/\alpha}\mathscr{H}^{s}_\delta(E)
+\end{align*}
+再令$\delta\rightarrow0$即可得到命题所给结论.
+\end{proof}
+通过命题三可以得到很多有用的推论
+\newtheorem{corollary}{推论}[subsection]
+\begin{corollary}
+若$f$为李普希茨映射, 则$\mathscr{H}^{s}(f(E))\leq c^{s}\mathscr{H}^{s}(E)$, 如果$f$为双李普希茨映射, 则$c'^{s}\mathscr{H}^{s}(E)\leq\mathscr{H}^{s}(f(E))\leq c^{s}\mathscr{H}^{s}(E)$. 若$f$为等距映射, 则$\mathscr{H}^{s}(f(E))=\mathscr{H}^{s}(E)$
+\end{corollary}
+由推论一，进一步还可以得到以下三个重要推论
+\begin{corollary}
+\text{}
+\begin{enumerate}
+\item $\mathbb{R}^d$中子集的豪斯多夫测度在平移及正交变换下不变
+\item 齐次性：$\mathscr{H}^{s}(\lambda E)=\lambda^s\mathscr{H}^{s}(E)$
+\item 设$E\subset \mathbb{R}^d$, 则$\mathscr{H}^{s}(p_v(E))\leq\mathscr{H}^{s}(E)$
+\end{enumerate}
+\end{corollary}
+这里$\lambda E=\{\lambda x: x\in E\}$(其中$\lambda>0$), $p_v$为$\mathbb{R}$到$V$的正交投影.
+
+\begin{proposition}
+设$0\leq s<t<\infty$, $E\subset X$, 则
+\begin{enumerate}
+\item $\mathscr{H}^{s}(E)<\infty \Rightarrow \mathscr{H}^{t}(E)=0$
+\item $\mathscr{H}^{t}(E)>0 \Rightarrow \mathscr{H}^{s}(E)=+\infty$
+\end{enumerate}
+\end{proposition}
+
+\subsection{康托三分集的豪斯多夫测度}
+事实上根据定义来确定集合的集合的豪斯多夫测度并不是一件容易的事情，这里不妨先以经典的康托三分集为例，讨论其豪斯多夫测度.
+
+\section{覆盖引理}
+
+\subsection{5r-覆盖引理}
+
+\subsection{维塔利覆盖引理}
+
+\subsection{伯西柯维奇覆盖引理}
+
+\section{豪斯多夫维数及其性质}
+\subsection{定义及初等性质}
+
+\subsection{质量分布原理}
+
+\subsection{比林斯利定理}
+
+
+\section{分形几何}
+\subsection{简述}
+
+
+\subsection{示例}
+
+
+\section{总结}
+%\nocite{*}
+%\bibliographystyle{unsrt}
+%\bibliographystyle{plain}
+%\bibliography{cite}
+
+\end{CJK*}
+\end{document}
