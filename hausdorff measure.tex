@@ -1,0 +1,370 @@
+\documentclass[a4paper,11pt]{ctexart}
+\usepackage{CJK}
+\usepackage{array,lipsum, bibentry}
+\usepackage[top=3cm,bottom=3cm,left=3cm,right=3cm]{geometry}
+\usepackage{amsfonts,amssymb,amsmath,amsthm}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\definecolor{url}{rgb}{0.15,0.57,0.68}
+\usepackage[colorlinks,linkcolor=black,hyperindex,CJKbookmarks]{hyperref}% 添加超级链接
+\hypersetup{colorlinks, breaklinks, urlcolor=url, linkcolor=Maroon}
+
+\usepackage{titlesec}
+%\titleformat*{\section}{\large\bfseries}%仅一级标题居中,一级标题4号黑体
+
+\CTEXsetup[format={\zihao{4}\bf\heiti}]{section}
+%\CTEXsetup[format={\zihao{-4}\bf\songti}]{subsection}
+%\CTEXsetup[format={\zihao{-4}\bf\songti}]{subsubsection}
+
+\usepackage{cite}
+
+\usepackage{draftwatermark}
+\SetWatermarkText{Chen-ang Liu}%设置水印文字
+\SetWatermarkLightness{0.8}%设置水印亮度
+\SetWatermarkScale{0.8}%设置水印大小
+
+%\usepackage{lettrine}
+\usepackage{supertabular}
+
+\definecolor{lightgray}{gray}{0.5}
+\newcolumntype{L}{>{\raggedleft}p{0.14\textwidth}}
+\newcolumntype{R}{p{0.8\textwidth}}
+\newcommand\VRule{\color{lightgray}\vrule width 0.5pt}
+
+\renewenvironment{proof}{\par\noindent{\bf 证明}}{\hspace*{\fill}$\square$\par}
+
+\begin{document}
+\begin{CJK*}{GBK}{song}
+\title{\vspace{-20mm}\fontsize{21pt}{10pt}\selectfont\heiti\textbf{豪斯多夫测度简述}}
+\author{刘辰昂\thanks{浙江大学, 邮箱:\href{mailto:liuchenang@gmail.com}{liuchenang@gmail.com}, 主页
+\url{chenangliu.info/}}}
+\date{}
+\maketitle
+\vspace{-10mm}
+%abstract
+%\renewcommand{\abstractname}{Abstract}
+%\begin{abstract}
+
+%\end{abstract}
+
+
+
+
+
+\section{豪斯多夫测度及其性质}
+\subsection{定义}
+豪斯多夫测度的定义方式与勒贝格测度等类似，同时通过寻找覆盖来实现，故在定义豪斯多夫测多前，首先需要被提及的是$\delta-\textbf{覆盖}$。其定义如下
+\newtheorem{definition}{定义}[subsection]
+\begin{definition}[$\delta-\textbf{覆盖}$]
+设$(X,d)$为度量空间，对于E的子集$U$，定义$U$的直径为$|U|=\sup\{d(x,y):x,y\in U\}$. 同时令$E$为$X$的子集. 并且设$\delta>0$, 若对于$X$的可列或有限子集族$\{U_i\}$, 如果它满足下述两条性质：(1)任一$U_i$的直径不超过$\delta$，即$|U_i|\leq\delta$; (2)且它们的并覆盖$E$, 即$\bigcup\limits_{i\geq1}U_i\supset E$, 则称$\{U_i\}$ 为$E$的一个$\delta-\textbf{覆盖}$
+\end{definition}
+基于$\delta-\textbf{覆盖}$可以给出$\mathscr{H}^{s}_{\delta}(E)$的定义
+\begin{definition}[$\mathscr{H}^{s}_{\delta}(E)$]
+设$s\geq0$, $\delta>0$, 令
+\begin{align*}
+\mathscr{H}^{s}_{\delta}(E)=\inf\{\sum_{i\geq1}|U_i|^s: \{U_i\}_{i\geq1}\text{为}E\text{的}\delta-\textbf{覆盖}\}
+\end{align*}
+\end{definition}
+其中这里$\inf$表示对$E$的所有的$\delta-\text{覆盖}$取下确界. 由于这里$\delta$是任取的正数，考虑到$\mathscr{H}^{s}_{\delta}$作为$\delta$的函数单调非减，故而可知其当$\delta$趋于0时极限存在。由此引出豪斯多夫测度的定义
+\begin{definition}[\bf 豪斯多夫测度]
+\begin{align*}
+\mathscr{H}^{s}(E)=\lim\limits_{\delta\rightarrow0}\mathscr{H}^{s}_{\delta}(E)
+\end{align*}
+这里$\mathscr{H}^{s}(E)$即称为$E$的$s-\textbf{维豪斯多夫测度}$
+\end{definition}
+此外值得注意的是他的值可能为0、正有限常数或者正无穷。当取定的$\textbf{s}$使得其为正有限常数时，则称$E$为$s-\textbf{集}$.
+
+\subsection{初等性质}
+与其他测度一样，豪斯多夫也有着很多良好的性质，比较重要的性质有四条同时由这四条重要性质也可以推出很多衍生的结论。
+\newtheorem{proposition}{命题}[subsection]
+\begin{proposition}
+作为$E$的函数, $\mathscr{H}^{s}_{\delta}(E)$与$\mathscr{H}^{s}(E)$为外测度
+\end{proposition}
+
+\begin{proof}
+由外测度的定义可知，我们只需分别证明$\mathscr{H}^{s}_{\delta}(\varnothing)=0$, 单调性即若$E\subset F$, 则$\mathscr{H}^{s}_{\delta}(E)\leq\mathscr{H}^{s}_{\delta}(F)$, 以及次可加性. 事实上前两条根据定义就可以直接看到，故只需证明次可加性即可，即对$X$的任意可列集族$\{E_i\}_{i\geq1}$, 有
+\begin{align*}
+\mathscr{H}^{s}_{\delta}(\bigcup\limits_{i\geq1}E_i)\leq\sum\limits_{i\geq1}\mathscr{H}^{s}_{\delta}(E_i)
+\end{align*}
+注意到在无限情形下该不等式显然成立，故只需考虑有限情形即可. 任给$\epsilon>0$, 对每一$i$, 选择$E_i$的一个$\delta-$覆盖$\{U_{i,j}\}_{j\geq1}$使得$\sum\limits_{j\geq1}|U_{i,j}|^s\leq\mathscr{H}^{s}_{\delta}(E_i)+\epsilon2^{-i}$. 由于可列集族$\{U_{i,j}\}_{i,j\geq1}$为$\bigcup\limits_{i\geq1}E_i$的一个$\delta-$覆盖，故结合定义并对上式累加可以得到
+\begin{align*}
+\mathscr{H}^{s}_{\delta}(\bigcup\limits_{i\geq1}E_i)\leq\sum\limits_{i,j\geq1}|U_{i,j}|^s\leq\sum\limits_{i\geq1}\mathscr{H}^{s}_{\delta}(E_i)+\epsilon
+\end{align*}
+最后由$\epsilon$的任意性即可得到$\mathscr{H}^{s}_{\delta}(\bigcup\limits_{i\geq1}E_i)\leq\sum\limits_{i\geq1}\mathscr{H}^{s}_{\delta}(E_i)$
+
+同理可证$\mathscr{H}^{s}$也有相同的性质(特殊情形)
+\end{proof}
+\begin{proposition}
+$\mathscr{H}^{s}$为度量外测度
+\end{proposition}
+
+\begin{proof}
+设$E,F\subset X$, 且$d(E,F)>0$. 由度量外测度的定义可知，只需证明
+\begin{align*}
+\mathscr{H}^{s}(E\cup F)=\mathscr{H}^{s}(E)+\mathscr{H}^{s}(F)
+\end{align*}
+根据外测度的性质可知只需证明$\mathscr{H}^{s}(E\cup F)\geq\mathscr{H}^{s}(E)+\mathscr{H}^{s}(F)$即可. 令$2d<d(E,F)$, 则$E$的任一$\delta-$覆盖与$F$的任一$\delta-$覆盖彼此不想交, 从而$E\cup F$的任一$\delta-$ 覆盖可以分解为$E$的$\delta-$覆盖与$F$的$\delta-$覆盖. 由此即可得到
+\begin{align*}
+\mathscr{H}^{s}_{\delta}(E\cup F)\geq\mathscr{H}^{s}_{\delta}(E)+\mathscr{H}^{s}_{\delta}(F)
+\end{align*}
+且
+\begin{align*}
+\mathscr{H}^{s}(E\cup F)\geq\mathscr{H}^{s}(E)+\mathscr{H}^{s}(F)
+\end{align*}
+故等式得证，即$\mathscr{H}^{s}$为度量外测度
+\end{proof}
+在给出第三个性质前，须先给出赫尔德条件和李普希茨映射的定义
+\begin{definition}[$\alpha$阶赫尔德(O.H\"{o}lder)条件]
+设$(X_1,d_1),(X_2,d_2)$为两个度量空间, $E\subset X_1$, $f: E\rightarrow X_2$为由$E$到$X_2$的映射, 如果存在正常数$c>0, \alpha>0$使得
+\begin{align*}
+d_2(f(x),f(y))\leq c(d_1(x,y))^{\alpha},\quad x,y\in E
+\end{align*}
+则称$f$满足$\alpha$\textbf{阶赫尔德(O.H\"{o}lder)条件}. 若$\alpha=1$, 则称$f$为李普希茨映射. 如果存在常数$c'>0$使得
+\begin{align*}
+c'(d_1(x,y))\leq d_2(f(x),f(y))\leq c(d_1(x,y)),\quad x,y\in E
+\end{align*}
+则称$f$为\textbf{双李普希茨映射}
+\end{definition}
+
+\begin{proposition}
+设$E\subset X_1$, $f: E\rightarrow X_2$满足$\alpha$阶赫尔德条件, 则对任意$s\geq0$, 有
+\begin{align*}
+\mathscr{H}^{s/\alpha}(f(E))\leq c^{s/\alpha}\mathscr{H}^{s}(E)
+\end{align*}
+\end{proposition}
+证明过程非常简单
+\begin{proof}
+设$\{U_i\}$为$E$的一个$\delta-$覆盖, 由命题条件可知
+\begin{align*}
+|f(U_i\cap E)|\leq c|U_i|^{\alpha}
+\end{align*}
+从而$\{f(U_i\cap E)\}$为$f(E)$的一个$c\delta^{\alpha}-$覆盖, 故
+\begin{align*}
+\sum|f(U_i\cap E)|^{s/\alpha}\leq c^{s/\alpha}\sum|U_i|^s
+\end{align*}
+由此即可得到
+\begin{align*}
+\mathscr{H}^{s/\alpha}_{c\delta^\alpha}(f(E))\leq c^{s/\alpha}\mathscr{H}^{s}_\delta(E)
+\end{align*}
+再令$\delta\rightarrow0$即可得到命题所给结论.
+\end{proof}
+通过命题三可以得到很多有用的推论
+\newtheorem{corollary}{推论}[subsection]
+\begin{corollary}
+若$f$为李普希茨映射, 则$\mathscr{H}^{s}(f(E))\leq c^{s}\mathscr{H}^{s}(E)$, 如果$f$为双李普希茨映射, 则$c'^{s}\mathscr{H}^{s}(E)\leq\mathscr{H}^{s}(f(E))\leq c^{s}\mathscr{H}^{s}(E)$. 若$f$为等距映射, 则$\mathscr{H}^{s}(f(E))=\mathscr{H}^{s}(E)$
+\end{corollary}
+由推论一，进一步还可以得到以下三个重要推论
+\begin{corollary}
+\text{}
+\begin{enumerate}
+\item $\mathbb{R}^d$中子集的豪斯多夫测度在平移及正交变换下不变
+\item 齐次性：$\mathscr{H}^{s}(\lambda E)=\lambda^s\mathscr{H}^{s}(E)$
+\item 设$E\subset \mathbb{R}^d$, 则$\mathscr{H}^{s}(p_v(E))\leq\mathscr{H}^{s}(E)$
+\end{enumerate}
+\end{corollary}
+这里$\lambda E=\{\lambda x: x\in E\}$(其中$\lambda>0$), $p_v$为$\mathbb{R}$到$V$的正交投影.
+
+\begin{proposition}
+设$0\leq s<t<\infty$, $E\subset X$, 则
+\begin{enumerate}
+\item $\mathscr{H}^{s}(E)<\infty \Rightarrow \mathscr{H}^{t}(E)=0$
+\item $\mathscr{H}^{t}(E)>0 \Rightarrow \mathscr{H}^{s}(E)=+\infty$
+\end{enumerate}
+\end{proposition}
+
+\subsection{康托三分集的豪斯多夫测度}
+事实上根据定义来确定集合的集合的豪斯多夫测度并不是一件容易的事情，这里不妨先以经典的康托三分集为例，讨论其豪斯多夫测度.
+\begin{definition}[康托三分集]
+设$E_0=[0,1]$为单位闭区间. $E_1$为由$E_0$删去中间长为$\frac{1}{3}$的开区间$(\frac{1}{3},\frac{2}{3})$(1阶基本间隔)所得到的的集合, 剩下的两个闭区间$[0,\frac{1}{3}]$,$[\frac{2}{3},1]$称为1阶基本区间. 再分别去掉两个1阶基本区间中间的$\frac{1}{3}$可得到$E_2$即由4个闭区间组成(2阶基本区间), 同理去掉的两个开区间称为2阶基本间隔. 以此做法不断重复，至第$k$步得到$E_k$, 由$2^k$ 个长为$3^{-k}$的闭区间(即$k$阶基本区间)组成, 被挖掉的$2^{k-1}$个长为$3^{-k}$的开区间为第$k$阶基本间隔. 令$\mathfrak{E}=\bigcap\limits_{k\geq1}E_k$. 集合$\mathfrak{E}$即称为康托三分集.
+\end{definition}
+此外容易验证其为全不连通的闭集. 在估计其豪斯多夫测度前首先定义相关符号$\mathscr{U}=\{U_i\}$为子集族, 此外记$\mathscr{U}=\sum\limits_i|U_i|^s$, 再令$\mathfrak{E}_1=\mathfrak{E}\cap[0,\frac{1}{3}],\mathfrak{E}_2=\mathfrak{E}\cap[\frac{2}{3},1]$. 不妨先考虑若当$\mathscr{H}^{s}(\mathfrak{E})$存在正有限值时$s$的取值，记为$s_0$. 通过$\mathfrak{E}$的构造可知$\mathfrak{E}=\mathfrak{E}_1\cup\mathfrak{E}_2,\mathfrak{E}_2=\{\frac{2}{3}+c:c\in\mathfrak{E}_1\}$. 事实上一次利用豪斯多夫测度的多亮外测度性、平移不变性与齐次性可得对任意$s\geq0$有
+\begin{align*}
+\mathscr{H}^{s}(\mathfrak{E})=2\cdot3^{-s}\mathscr{H}^{s}(\mathfrak{E})
+\end{align*}
+故若$\mathscr{H}^{s}(\mathfrak{E})$可以取到正有限值, 则可以解得$s_0=\frac{\log2}{\log3}$
+
+进一步地, 我们需要确定$\mathscr{H}^{s_0}(\mathfrak{E})$的取值，故需要寻找合适的覆盖. 事实上对于任意的$k\geq1$, $k$阶基本区间构成的几何恰好是$\mathfrak{E}$的一个$3^{-k}-$覆盖, 从而得
+\begin{align*}
+\mathscr{H}^{s_0}_{3^{-k}}(\mathfrak{E})\leq\sum\limits_{i=1}^{2^k}|3^{-k}|^{s_0}=1
+\end{align*}
+即$\mathscr{H}^{s_0}_{3^{-k}}(\mathfrak{E})\leq1$. 下面证明反向的不等式. 由于下界的估计远比上界要难的多, 故这里分四步进行. 主要思想是从构造覆盖开始, 利用不等关系的传递性将不能计算的覆盖转换为可计算的覆盖从而构造出下界.
+
+(1)设$\mathscr{U}=\{U_i\}$为$\mathfrak{E}$的一个开区间覆盖, 根据定义可知$\mathfrak{E}$为紧集, 故可以从$\mathscr{U}$中挑出一个有限覆盖, 并且在此基础上要求$\mathscr{U}$的任一开区间不包含在$\mathscr{U}$的其他任何一个开区间中. 我们估计$\mathscr{U}^{s_0}$ 的下界.
+
+(2)设$U_1=(a_1,b_1)$, $U_2=(a_2,b_2)\in \mathscr{U}$. 接着上一步的结果, 可以令$a_1<a_2$, 且$U_1\subsetneq U_2$. 根据定义知$\mathfrak{E}$无内点, 且$U_1\cap U_2$为开集, 因此存在$x\in U_1\cap U_2,x\notin \mathfrak{E}$. 从而存在开区间$(x_1, x_2)$使$(x_1,x_2)\cap \mathfrak{E}=\empty$. 事实上我们可以进一步要求$(x_1,x_2)$是基本间隔. 令$U_1^{\ast}=(a_1,x_1),U_2^{\ast}=(x_2,b_2)$, 则$U_1^{\ast}\cap U_2^{\ast}=\empty$. 于是基于这种构造方式, 可以得到$\mathfrak{E}$的一个开区间覆盖$\mathscr{U}^{\ast}=\{U_i^{\ast}\}$. 不难发现此时$\mathscr{U}^{\ast}$相比$\mathscr{U}^{\ast}$ 具有更多良好的性质: $\mathscr{U}^{\ast}$中的元素两两不相交, 并且每个$U_i^{\ast}$都由基本间隔分开. 此外由构造方式可以看到$\mathscr{U}^{s_0}\geq\mathscr{U}^{\ast s_0}$.
+
+(3)进一步构造, 令$J_i=[\inf U_i^{\ast}\cap\mathfrak{E}, \sup U_i^{\ast}\cap \mathfrak{E}]$, 则$\mathscr{J}=\{J_i\}$在(2)的基础上又有了更良好的性质(有开到闭): 构成互不相交的闭区间覆盖并且被基本间隔分开. 当然根据构造方式也不难得出$\mathscr{J}^{s_0}\leq \mathscr{U}^{\ast s_0}$
+
+(4)最后对$\mathscr{J}^{s_0}$进行进一步改进使其变成可估计的形式. 取定某个$J_i$, 由$\mathfrak{E}$的构造原理可知
+\begin{align*}
+J_i=J_{j,1}\cup K\cup J_{j,2}
+\end{align*}
+这里$K$为包含于$J_i$的唯一的最大的间隔集, $J_{i,1}$, $J_{i,2}$为与$K$同阶的两个基本区间的闭子区间. 不难发现$|J_{i,1}|,|J_{i,2}|\leq|K|$, 故$|K|\geq\frac{1}{2}(|J_{i,1}|+|J_{i,2}|)$, 利用凸函数不等式可得
+\begin{align*}
+|J_i|^{s_0}&=(|J_{i,1}|+|K|+|J_{i,2}|)^{s_0}\geq(\frac{2}{3}(|J_{i,1}|+|J_{i,2}|))^{s_0}\\
+&=3^{s_0}(\frac{|J_{i,1}|+|J_{i,2}|}{2})^{s_0}\geq\frac{3^{s_0}}{2}(|J_{i,1}|^{s_0}+|J_{i,1}|^{s_0})
+\end{align*}
+如此即可得到一个新的闭区间覆盖
+\begin{align*}
+\mathscr{J}_i=\{J_j\}_{j\neq i}\cup\{J_{i,1}, J_{i,2}\}
+\end{align*}
+使得$\mathscr{J}^{s_0}\geq\mathscr{J}_i^{s_0}$.
+
+事实上, 可以看到由于$J_i$左右端含的基本区间必有正的长度, 经有限步后, 上述挖去的$K$的长度必与某$J_{i,j}$相等($J=1,2$). 反复执行后由于$\mathscr{J}$的有限性, 经有限步后所得新族的$\mathscr{J}^{\ast}$的成员全由基本区间组成, 并且有$\mathscr{J}^{s_0}\geq \mathscr{J}^{\ast s_0} $.
+
+令$\mathscr{J}^{\ast}$中最短的基本区间是$k_0$阶, 通过上述构造过程经有限步可以得到一个由所有的$k_0$阶基本区间作成的覆盖$\mathscr{J}_{k_0}$. 故
+\begin{align*}
+\mathscr{J}_{k_0}^{s_0}=\sum\limits_{i=1}^{2^{k_0}}3^{-k_0s_0}=2^{k_0}\cdot 2^{-k_0}=1
+\end{align*}
+故由不等式的传递性可以得到$\mathscr{U}^{s_0}\geq \mathscr{J}^{s_0}_{k_0}=1$. 从而即得$\mathscr{H}^{s_0}(\mathfrak{E})\geq 1$. 结合之前的上界估计得到$\mathscr{H}^{s_0}(\mathfrak{E})=1$.
+
+最后结合命题4得到
+\begin{align*}
+\mathscr{H}^{s}(\mathfrak{E})
+\begin{cases}
+0,&s>\frac{\log2}{\log3}\\
+1,&s=\frac{\log2}{\log3}\\
+\infty,&s<\frac{\log2}{\log3}
+\end{cases}
+\end{align*}
+此外值得一提的是当$s=1$时即勒贝格测度.
+\section{覆盖引理}
+从康托三分集的豪斯多夫测度估计中我们可以看到即使是像康托三分集这样及其特殊的集合，从定义出来对其的豪斯多夫测度的估计也是及其困难和麻烦的. 覆盖引理的出现使得在估计豪斯多夫测度时了有更强有力的工具.
+\subsection{5r-覆盖引理}
+\newtheorem{theorem}{定理}[subsection]
+\begin{theorem}[5r-覆盖引理]
+设$\mathscr{B}$为$\mathbb{R}^d$中有界区域内的闭球族, 则存在可列或有限个彼此不想交的子球族$\{B_i\}\subset B$, 使得
+\begin{align*}
+\bigcup\limits_{B\in \mathscr{B}}B\subset 5B_i
+\end{align*}
+\end{theorem}
+值得注意的是, 5只是在一般情况给出的一个估计, 在大部分情形下, 都可以在更宽的条件下得到相同的结论.
+\subsection{维塔利覆盖引理}
+\begin{definition}[维塔利覆盖族]
+设$E\subset (X,d)$, $\mathscr{V}=\mathscr{V}(E)$为$X$的一个子集类. 如果对任意$x\in E$以及任意$\delta>0$, 均存在$U\in \mathscr{V}$, 使得$x\in U$, 且$0<|U|\leq\delta$, 则称$\mathscr{V}$为$E$的一个维塔利类.
+\end{definition}
+
+\begin{theorem}[维塔利覆盖引理]
+(1)设E为$\mathbb{R}^d$的$\mathscr{H}^s$可测子集, $\mathscr{V}$为由有界闭子集构成的E的维塔利覆盖族. 则可以从$\mathscr{V}$中挑出可列或有限的不想交的集列$\{U_i\}$, 使得$\sum|U_i|^s=\infty$或$\mathscr{H}^s(E\setminus\bigcup\limits_iU_i)=0$.
+
+(2)如果$\mathscr{H}^s(E)<\infty$, 则对任意$\epsilon>0$, 我们可以要求上述集列满足
+\begin{align*}
+\mathscr{H}^s(E)\leq\sum|U_i|^s+\epsilon
+\end{align*}
+\end{theorem}
+\subsection{伯西柯维奇覆盖引理}
+\begin{theorem}[伯西柯维奇覆盖引理]
+设$E\subset \mathbb{R}^d$为有界集. 令$\mathscr{B}=\{B(x,r(x)): x\in E, r(x)>0\}$, 则我们可以从球族中挑出可列或有限子球族$\mathscr{B}^{\ast}=\{B(x_i,r(x_i))\}$使得
+
+(1)$E\subset\bigcup\limits_iB(B(x_i,r(x_i))$;
+
+(2)存在仅依赖于$d$的正整数$\lambda_d$, 使得$\mathscr{B}^{\ast}=\bigcup_{j=1}^{\lambda_d}\mathscr{B}_j^{\ast}$, 其中$\mathscr{B}_j^{\ast}$中的球彼此不想交;
+
+(3)对任意$x\subset\mathbb{R}^d$, $\sum\limits_{B\in\mathscr{B}^{\ast}}\chi_B(x)\leq\lambda_d$, 即$\mathscr{B}$中与任一球相交的球的个数不超过$\lambda_d$.
+\end{theorem}
+
+
+\section{豪斯多夫维数及其性质}
+\subsection{定义及初等性质}
+在讨论豪斯多夫的性质时，可以看到对于某些$E\subset X$, 存在$s$的一个临界值, 使$\mathscr{H}^s(E)$从无穷跳跃到0. 例如在估计康托三分集的豪斯多夫时的临界值就是$\frac{\log 2}{\log 3}$. 这一临界值就被称为集合$E$的豪斯多夫维数, 记为$\dim_HE$. 下面给出一个较为严格的定义
+\begin{definition}[豪斯多夫维数]
+\begin{align*}
+\dim_HE&=\sup\{s: \mathscr{H}^s(E)>0 \}=\sup\{s: \mathscr{H}^s(E)=\infty \}\\
+&=\inf\{s: \mathscr{H}^s(E)<\infty \}=\inf\{s: \mathscr{H}^s(E)=0 \}
+\end{align*}
+\end{definition}
+
+同样豪斯多夫也有着很多良好的性质，主要可以概括为四大块
+\begin{proposition}
+设$E\subset X$, 若$\mathscr{H}^s(E)<\infty$, 则$\dim_HE\leq s$; 若$\mathscr{H}^s(E)>0$, 则$\dim_HE\geq s$. 特别地, 若$0<\mathscr{H}^s(E)<\infty$, 则$\dim_HE=s$.
+\end{proposition}
+\begin{proof}
+根据定义即可直接得到
+\end{proof}
+\begin{proposition}[单调性与$\delta-$稳定性]
+\text{}
+
+(1)单调性:若$E\subset F$, 则$\dim_HE\leq\dim_HE$
+
+(2)$\delta-$稳定性: 设$\{E_n\}_{n\geq1}$为一集列, 则
+\begin{align*}
+\dim_H\bigcup\limits_{i\geq1}E_n=\sup\limits_{i\geq1}\{\dim_HE_n\}
+\end{align*}
+\end{proposition}
+\begin{proof}
+单调性同样可直接通过定义得到(同时利用豪斯多夫测度的单调性). 故只需证$\delta-$稳定性即可. 由单调性可知, 对任意$n$有
+\begin{align*}
+\dim_H\bigcup\limits_{i\geq1}E_i\geq\dim_HE_n
+\end{align*}
+从而
+\begin{align*}
+\dim_H\bigcup\limits_{i\geq1}E_i\geq\sup\limits_{i\geq1}\dim_HE_i
+\end{align*}
+设$\alpha>\sup\limits_{i\geq1}\dim_HE_i$, 则显然对任意$i$有$\dim_HE_i<\alpha$, 故$\mathscr{H}^\alpha(E_i)=0$, 从而$\mathscr{H}^\alpha(\bigcup\limits_{i\geq1}E_i)=0$. 由第一条性质即可知$\dim_H\bigcup\limits_{i\geq1}E_i\leq\alpha$, 由$\alpha$的任意性即得$\dim_H\bigcup\limits_{i\geq1}E_i\leq\sup\limits_{i\geq1}\dim_HE_i$
+\end{proof}
+此外由此性质还可以得到以下推论
+\begin{corollary}
+任意可列集的豪斯多夫维数为0
+\end{corollary}
+\begin{proposition}
+设$E\subset X_1$, $f:X_1\rightarrow X_2$为$\alpha$阶赫尔德映射, 则
+\begin{align*}
+\dim_Hf(E)\leq\frac{1}{\alpha}\dim_HE
+\end{align*}
+\end{proposition}
+
+\begin{proof}
+设$s>\dim_HE$, 则由豪斯多夫测度的第三条性质可知
+\begin{align*}
+\mathscr{H}^{s/\alpha}(f(E))\leq c^{s/\alpha}\mathscr{H}(E)=0
+\end{align*}
+故而$\dim_Hf(E)\leq s/\alpha$, 由$s$的任意性得
+\begin{align*}
+\dim_Hf(E)\leq\frac{1}{\alpha}\dim_HE
+\end{align*}
+\end{proof}
+同样基于这条性质我们也可以很快得到以下推论
+\begin{corollary}
+若$E\subset X_1$, $f:X_1\rightarrow X_2$为李普希茨映射, 则$\dim_Hf(E)\leq\dim_HE$.
+\end{corollary}
+\begin{proposition}
+$\mathbb{R}^d$及$\mathbb{R}^d$中的任一开集的豪斯多夫维数为$d$
+\end{proposition}
+\begin{proof}
+注意到$\mathbb{R}^d$为可列个$d$维单位立方体的并, 从而由维数的可列平稳性，$\dim_H\mathbb{R}^d=\dim_H I_d$, 其中$I_d$为$d$维单位立方体, 由豪斯多夫测度的性质可知$\mathscr{H}^d(I_d)=c_d\mathscr{L}^d(I_d)=c_d$, 从而$\dim_HI_d=d$, 由此得$\dim_H\mathbb{R}^d=d$. 另一方面, $\mathbb{R}^d$中的任一开集包含一个正$\mathscr{L}^d$体积的立方体, 故而其维数为$d$.
+\end{proof}
+\subsection{质量分布原理}
+质量分布原理是估计豪斯多夫维数的一个有力工具, 不妨先看下面这个定理
+\begin{theorem}
+设$E\subset \mathbb{R}^d$, 设$\{U_{k,n}\}_{n\geq1}(k\geq1)$为$E$的一列$\delta_k$覆盖, $\delta_k\rightarrow0$. 如果存在正常数列$c_k$, 使得对任意$k$, 有$\sum\limits_{n\geq1}|U_{k,n}|^s\leq c_k$且$\lim\inf c_k<\infty$, 则$\mathscr{H}^s(E)<\infty$, 从而$\dim_HE\leq s$.
+\end{theorem}
+从该定理可以看出估计一个集合的维数的上界, 只需对一些特殊的覆盖$\{U_i\}$估计其和式(长度和)$\sum|U_i|^s$. 当然与豪斯多夫测度的估计一样, 下界的估计总是比上界要困难的多. 因为下界估计需要对集合的所有$\delta-$覆盖对和式$\sum|U_i|^s$作下界估计. 此时如果用于覆盖的集合$\{U_i\}$的直径相差较大, 则和式的估计就会变得非常困难. 因此一个自然的想法就是希望和式的每一项都有“适当”的贡献. 如果存在一个测度$\mu$, 使得对任意$U$, 都有$\mu(U)<|U|^s$, 一个直观的解释就是$\mu$的分布比较“均匀”, 质量分布原理即是在这种想法下产生的. 在介绍质量分布原理之前先给出\textbf{质量分布}的定义
+\begin{definition}[质量分布]
+支撑在$E\subset \mathbb{R}^d$上的正有限伯雷尔测度$\mu$, 成为$E$上的一个质量分布.
+\end{definition}
+\begin{theorem}[质量分布原理]
+设$s\geq0$, $E\subset \mathbb{R}^d$上的质量分布$\mu$满足$s-$阶赫尔德条件, 即存在常数$c>0$, 以及$\delta>0$, 使得
+\begin{align*}
+\mu(U)\leq c|U|^s
+\end{align*}
+对所有满足$|U|\leq\delta$的集$U$成立, 则$\mathscr{H}^s(E)\geq\mu(E)/c$
+\end{theorem}
+质量分布原理的证明并不繁琐
+\begin{proof}
+任取$E$的$\delta-$覆盖$\{U_i\}$, 不妨假设$U_i$为伯雷尔集, 结合定理中条件可知
+\begin{align*}
+0<\mu(E)\leq\mu(\bigcup\limits_iU_i)\leq\sum\limits_i\mu(U_i)\leq c\sum\limits_i|U_i|^s
+\end{align*}
+从而有$\mathscr{H}^s_\delta(E)\geq\frac{\mu(E)}{c}$, 再对$\delta$取极限即可得$\mathscr{H}^s(E)\geq\mu(E)/c$.
+\end{proof}
+
+
+
+
+%\nocite{*}
+%\bibliographystyle{unsrt}
+%\bibliographystyle{plain}
+%\bibliography{cite}
+
+\end{CJK*}
+\end{document}
